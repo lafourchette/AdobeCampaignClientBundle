@@ -5,14 +5,12 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="la_fourchette_soap.soap_client.adobe_builder" class="LaFourchette\AdobeCampaignClientBundle\SoapClient\SoapClientAdobeBuilder"
+        <service id="la_fourchette_adobe_client.adobe_builder" class="LaFourchette\AdobeCampaignClientBundle\SoapClient\SoapClientAdobeBuilder"
 />
-        <service id="la_fourchette_soap.client"
+        <service id="la_fourchette_adobe_client.client"
                  class="LaFourchette\AdobeCampaignClientBundle\SoapClient\Client"
-                 factory-service="la_fourchette_soap.soap_client.adobe_builder"
+                 factory-service="la_fourchette_adobe_client.soap_client.adobe_builder"
                  factory-method="build">
-            <argument type="service" id="la_fourchette_soap.client.session" />
-            <argument type="service" id="la_fourchette_soap.client.recipient" />
         </service>
     </services>
 </container>

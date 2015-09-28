@@ -18,19 +18,13 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('la_fourchette_soap');
+        $rootNode = $treeBuilder->root('adobe_campaign_client');
 
         $rootNode
             ->children()
-                ->arrayNode('wsdls')
-                    ->prototype('array')
-                        ->children()
-                            ->scalarNode('path')->cannotBeEmpty()->isRequired()->end()
-                            ->scalarNode('login')->end()
-                            ->scalarNode('password')->end()
-                        ->end()
-                    ->end()
-                ->end()
+                ->scalarNode('path')->cannotBeEmpty()->isRequired()->end()
+                ->scalarNode('login')->end()
+                ->scalarNode('password')->end()
             ->end()
         ;
 

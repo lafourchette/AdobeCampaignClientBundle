@@ -6,26 +6,39 @@ use LaFourchette\AdobeCampaignClientBundle\SoapClient\Client as SoapClient;
 
 class SoapClientAdobeBuilder
 {
+    private $config;
+
+    public function __construct($config)
+    {
+        $this->config = $config;
+    }
+
     /**
      * @param SoapClient $soapClientSession
      * @param SoapClient $soapClientRecipient
      *
      * @return SoapClient
      */
-    public function build(SoapClient $soapClientSession, SoapClient $soapClientRecipient)
+    public function build()
     {
-        $response = $soapClientSession->logon(array(
+        $soapClient = new SoapClient(null, array(
+            'location' => $this->config['base_uri'].'/nl/jsp/soaprouter.jsp';
+        ));
+
+        $response = $soapClient->logon(array(
             'sessiontoken' => '',
-            'strLogin' => $soapClientSession->getToken()->getLogin(),
-            'strPassword' => $soapClientSession->getToken()->getPassword(),
+            'strLogin' => $config['login'],
+            'strPassword' => $config['password'],
             'elemParameters' => '',
         ));
 
-        $soapClientRecipient->setHttpHeaders(array(
+        var_dump($response);die;
+
+        $soapClient->setHttpHeaders(array(
             'X-Security-Token' => $response->pstrSecurityToken,
             'cookie' => '__sessiontoken=' . $response->pstrSessionToken,
         ));
 
-        return $soapClientRecipient;
+        return $soapClient;
     }
 }

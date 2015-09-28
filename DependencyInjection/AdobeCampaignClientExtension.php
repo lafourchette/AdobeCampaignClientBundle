@@ -22,11 +22,12 @@ class AdobeCampaignClientExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+        $container->setParameter('adobe_campaign_client.configuration', $config);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        $this->loadSoapClient($config, $container);
+//        $this->loadSoapClient($config, $container);
 
     }
 
