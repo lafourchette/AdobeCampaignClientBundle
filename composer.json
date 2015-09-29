@@ -15,7 +15,7 @@
     ],
     "minimum-stability": "dev",
     "autoload": {
-        "psr-0": { "LaFourchette\\AdobeCampaignClientBundle": "" }
+        "psr-4": { "LaFourchette\\AdobeCampaignClientBundle\\": "" }
     },
     "target-dir": "LaFourchette/AdobeCampaignClientBundle",
     "require": {
