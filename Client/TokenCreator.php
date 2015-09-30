@@ -64,12 +64,7 @@ EOT;
                 1
             );
         } catch(\Exception $e) {
-            $description = "====== REQUEST HEADERS =====" . PHP_EOL;
-            $description .= $soapClient->__getLastRequestHeaders();
-            $description .= "========= REQUEST ==========" . PHP_EOL;
-            $description .= $soapClient->__getLastRequest();
-
-            throw new TokenCreationException($e->getMessage(), $description);
+            throw new TokenCreationException($e->getMessage(), $e->getCode(), $e);
         }
 
         if ($response === null) {

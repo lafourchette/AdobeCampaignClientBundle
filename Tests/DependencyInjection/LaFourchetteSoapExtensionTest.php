@@ -20,23 +20,18 @@ class AdobeCampaignClientExtensionTest extends AbstractExtensionTestCase
     public function after_loading_the_Service_client_has_been_set()
     {
         $this->load(array(
-            'wsdls' => array(
-                'session' => array(
-                    'path' => 'wsdl.xml',
-                    'login' => 'webservice',
-                    'password' => 'password',
-                ),
-                'recipient' => array(
-                    'path' => 'wsdl.xml',
-                    'login' => 'webservice',
-                    'password' => 'password',
+            'base_uri' => 'http://foo.com',
+            'login' => 'webservice',
+            'password' => 'password',
+            'schemas' => array(
+                'query_def' => array(
+                    'name' => 'query_def',
+                    'schema' => 'xtk:queryDef'
                 ),
             )
         ));
 
-        $this->assertContainerBuilderHasService('la_fourchette_soap.client.recipient');
-        $this->assertContainerBuilderHasService('la_fourchette_soap.client.session');
-        $this->assertContainerBuilderHasService('la_fourchette_soap.soap_client.adobe_builder');
-        $this->assertContainerBuilderHasService('la_fourchette_soap.client');
+        $this->assertContainerBuilderHasService('la_fourchette_adobe_client.client.query_def');
+        $this->assertContainerBuilderHasService('la_fourchette_adobe_client.creator.client');
     }
 }
