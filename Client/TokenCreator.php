@@ -67,7 +67,7 @@ EOT;
             throw new TokenCreationException($e->getMessage(), $e->getCode(), $e);
         }
 
-        if ($response === null) {
+        if (null === $response) {
             throw new TokenCreationException('Empty response received');
         }
 
