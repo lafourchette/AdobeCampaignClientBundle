@@ -36,7 +36,7 @@ class ClientCreator
      *
      * @param string $schema
      *
-     * @return SoapClient
+     * @return Client
      */
     public function create($schema)
     {
