@@ -1,14 +1,15 @@
 <?php
 
-namespace LaFourchette\AdobeCampaignClientBundle\SoapClient;
+namespace LaFourchette\AdobeCampaignClientBundle\Client;
 
 use BeSimple\SoapClient\SoapClient;
 use BeSimple\SoapClient\SoapRequest;
-
-use LaFourchette\AdobeCampaignClientBundle\SoapClient\Token;
+use LaFourchette\AdobeCampaignClientBundle\Client\Token;
 
 class Client extends SoapClient
 {
+    const SOAP_ROUTER_PATH = '/nl/jsp/soaprouter.jsp';
+
     /**
      * @var Token
      */

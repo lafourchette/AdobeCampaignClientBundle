@@ -22,9 +22,17 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('path')->cannotBeEmpty()->isRequired()->end()
+                ->scalarNode('base_uri')->cannotBeEmpty()->isRequired()->end()
                 ->scalarNode('login')->end()
                 ->scalarNode('password')->end()
+                ->arrayNode('schemas')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('name')->cannotBeEmpty()->isRequired()->end()
+                            ->scalarNode('schema')->cannotBeEmpty()->isRequired()->end()
+                        ->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 
