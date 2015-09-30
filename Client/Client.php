@@ -5,6 +5,7 @@ namespace LaFourchette\AdobeCampaignClientBundle\Client;
 use BeSimple\SoapClient\SoapClient;
 use BeSimple\SoapClient\SoapRequest;
 use LaFourchette\AdobeCampaignClientBundle\Client\Token;
+use LaFourchette\AdobeCampaignClientBundle\Util\AdobeCampaignXmlLoader;
 
 class Client extends SoapClient
 {
@@ -99,8 +100,6 @@ class Client extends SoapClient
             1
         );
 
-        $response = str_ireplace(array('SOAP-ENV:', 'SOAP:'), '', str_replace('xmlns=', 'ns=', $response));
-
-        return simplexml_load_string($response);
+        return AdobeCampaignXmlLoader::loadXml($response);
     }
 }

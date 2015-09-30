@@ -3,6 +3,7 @@
 namespace LaFourchette\AdobeCampaignClientBundle\Client;
 
 use LaFourchette\AdobeCampaignClientBundle\Exception\TokenCreationException;
+use LaFourchette\AdobeCampaignClientBundle\Util\AdobeCampaignXmlLoader;
 
 /**
  * Create a Adobe Token object with security informations
@@ -71,9 +72,7 @@ EOT;
             throw new TokenCreationException('Empty response received');
         }
 
-        $response = str_ireplace(array('SOAP-ENV:', 'SOAP:'), '', str_replace('xmlns=', 'ns=', $response));
-
-        $xmlResponse = simplexml_load_string($response);
+        $xmlResponse = AdobeCampaignXmlLoader::loadXml($response);
 
         $xmlSessionToken = $xmlResponse->xpath('/Envelope/Body/LogonResponse/pstrSessionToken');
         $session = array_pop($xmlSessionToken)->__toString();
