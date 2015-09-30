@@ -43,6 +43,9 @@ class ClientCreatorTest extends \PHPUnit_Framework_TestCase
         $this->clientInstantiator->instantiateClient('http://foo.com/nl/jsp/schemawsdl.jsp?schema=foo&__sessiontoken=sessionToken')
             ->willReturn($client->reveal());
 
+        $client->setSchema('foo')
+            ->shouldBeCalled();
+
         $client->setToken($token)
             ->shouldBeCalled();
 

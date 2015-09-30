@@ -46,6 +46,7 @@ class ClientCreator
             $token->getBaseUri().sprintf(self::WSDL_PATH, $schema, $token->getSession())
         );
 
+        $client->setSchema($schema);
         $client->setToken($token);
         $client->setHttpHeaders(array(
             'X-Security-Token' => $token->getSecurity(),
