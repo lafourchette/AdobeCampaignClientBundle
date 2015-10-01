@@ -22,34 +22,29 @@ class AdobeCampaignClientExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+        $container->setParameter('adobe_campaign_client.configuration', $config);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        $this->loadSoapClient($config, $container);
-
+        // Load client services from configuration
+        foreach ($config['schemas'] as $node) {
+            $this->loadClient($container, $node);
+        }
     }
 
     /**
-     * @param array            $config
      * @param ContainerBuilder $container
+     * @param array            $node
      */
-    protected function loadSoapClient(array $config, ContainerBuilder $container)
+    protected function loadClient(ContainerBuilder $container, $node)
     {
-        foreach ($config['wsdls'] as $clientName => $node) {
-            // Define token by configuration
-            $definitionToken = new Definition('LaFourchette\AdobeCampaignClientBundle\SoapClient\Token', array(
-                $node['login'],
-                $node['password'],
-            ));
-            // Define Client by configuration
-            $definitionClient = new Definition('LaFourchette\AdobeCampaignClientBundle\SoapClient\Client', array(
-                $node['path'],
-            ));
-            // Set Token for client api
-            $definitionClient->addMethodCall('setToken', array($definitionToken));
-            $definitionClient->setPublic(false);
-            $container->setDefinition('la_fourchette_soap.client.' . $clientName, $definitionClient);
-        }
+        $definitionClient = new Definition('LaFourchette\AdobeCampaignClientBundle\Client\Client', array(
+            $node['schema']
+        ));
+        $definitionClient->setFactoryService('la_fourchette_adobe_client.creator.client');
+        $definitionClient->setFactoryMethod('create');
+
+        $container->setDefinition('la_fourchette_adobe_client.client.' . $node['name'], $definitionClient);
     }
 }
