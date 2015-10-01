@@ -12,7 +12,7 @@ class AdobeCampaignXmlLoaderTest
 <SOAP-ENV:Envelope xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:ns='urn:xtk:session' xmlns:SOAP-ENV='http://schemas.xmlsoap.org/soap/envelope/'>
   <SOAP-ENV:Body>
     <LogonResponse xmlns='urn:xtk:session' SOAP-ENV:encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'>
-      <pstrSecurityToken xsi:type='xsd:string'>securityToken</pstrSecurityToken>
+      <pstrSecurityConfiguration xsi:type='xsd:string'>securityConfiguration</pstrSecurityConfiguration>
     </LogonResponse>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>

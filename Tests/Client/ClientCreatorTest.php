@@ -7,35 +7,35 @@ use LaFourchette\AdobeCampaignClientBundle\Client\Client;
 
 class ClientCreatorTest extends \PHPUnit_Framework_TestCase
 {
-    private $tokenProvider;
+    private $configurationProvider;
     private $clientInstantiator;
     private $creator;
 
     public function setUp()
     {
-        $this->tokenProvider = $this->prophesize('LaFourchette\AdobeCampaignClientBundle\Client\TokenProvider');
+        $this->configurationProvider = $this->prophesize('LaFourchette\AdobeCampaignClientBundle\Client\ConfigurationProvider');
         $this->clientInstantiator = $this->prophesize('LaFourchette\AdobeCampaignClientBundle\Client\ClientInstantiator');
 
         $this->creator = new ClientCreator(
-            $this->tokenProvider->reveal(),
+            $this->configurationProvider->reveal(),
             $this->clientInstantiator->reveal()
         );
     }
 
     public function testCreateClient()
     {
-        $token = $this->prophesize('LaFourchette\AdobeCampaignClientBundle\Client\Token');
+        $configuration = $this->prophesize('LaFourchette\AdobeCampaignClientBundle\Client\Configuration');
 
-        $this->tokenProvider->getToken()
-            ->willReturn($token->reveal());
+        $this->configurationProvider->getConfiguration()
+            ->willReturn($configuration->reveal());
 
-        $token->getBaseUri()
+        $configuration->getBaseUri()
             ->willReturn('http://foo.com')->shouldBeCalled();
 
-        $token->getSession()
+        $configuration->getSession()
             ->willReturn('sessionToken')->shouldBeCalled();
 
-        $token->getSecurity()
+        $configuration->getSecurity()
             ->willReturn('securityToken')->shouldBeCalled();
 
 
@@ -46,7 +46,7 @@ class ClientCreatorTest extends \PHPUnit_Framework_TestCase
         $client->setSchema('foo')
             ->shouldBeCalled();
 
-        $client->setToken($token)
+        $client->setConfiguration($configuration)
             ->shouldBeCalled();
 
         $client->setHttpHeaders(array(

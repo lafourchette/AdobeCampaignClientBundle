@@ -12,9 +12,9 @@ class ClientCreator
     const WSDL_PATH = '/nl/jsp/schemawsdl.jsp?schema=%s&__sessiontoken=%s';
 
     /**
-     * @var TokenProvider
+     * @var ConfigurationProvider
      */
-    private $tokenProvider;
+    private $configurationProvider;
 
     /**
      * @var ClientInstantiator
@@ -22,12 +22,12 @@ class ClientCreator
     private $clientInstantiator;
 
     /**
-     * @param TokenProvider $tokenProvider
+     * @param ConfigurationProvider $configurationProvider
      * @param ClientInstantiator $clientInstantiator
      */
-    public function __construct(TokenProvider $tokenProvider, ClientInstantiator $clientInstantiator)
+    public function __construct(ConfigurationProvider $configurationProvider, ClientInstantiator $clientInstantiator)
     {
-        $this->tokenProvider = $tokenProvider;
+        $this->configurationProvider = $configurationProvider;
         $this->clientInstantiator = $clientInstantiator;
     }
 
@@ -40,17 +40,17 @@ class ClientCreator
      */
     public function create($schema)
     {
-        $token = $this->tokenProvider->getToken();
+        $configuration = $this->configurationProvider->getConfiguration();
 
         $client = $this->clientInstantiator->instantiateClient(
-            $token->getBaseUri().sprintf(self::WSDL_PATH, $schema, $token->getSession())
+            $configuration->getBaseUri().sprintf(self::WSDL_PATH, $schema, $configuration->getSession())
         );
 
         $client->setSchema($schema);
-        $client->setToken($token);
+        $client->setConfiguration($configuration);
         $client->setHttpHeaders(array(
-            'X-Security-Token' => $token->getSecurity(),
-            'cookie' => '__sessiontoken=' . $token->getSession(),
+            'X-Security-Token' => $configuration->getSecurity(),
+            'cookie' => '__sessiontoken=' . $configuration->getSession(),
         ));
 
         return $client;

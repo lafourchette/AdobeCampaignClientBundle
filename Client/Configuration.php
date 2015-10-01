@@ -2,7 +2,7 @@
 
 namespace LaFourchette\AdobeCampaignClientBundle\Client;
 
-class Token
+class Configuration
 {
     /**
      * @var string

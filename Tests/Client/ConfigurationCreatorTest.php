@@ -3,10 +3,10 @@
 
 namespace LaFourchette\AdobeCampaignClientBundle\Tests\SoapClient;
 
-use LaFourchette\AdobeCampaignClientBundle\Client\TokenCreator;
+use LaFourchette\AdobeCampaignClientBundle\Client\ConfigurationCreator;
 use Prophecy\Argument;
 
-class TokenCreatorTest extends \PHPUnit_Framework_TestCase
+class ConfigurationCreatorTest extends \PHPUnit_Framework_TestCase
 {
     private $payload = <<<EOT
 <?xml version='1.0'?>
@@ -97,7 +97,7 @@ EOT;
     {
         $this->clientInstantiator = $this->prophesize('LaFourchette\AdobeCampaignClientBundle\Client\ClientInstantiator');
 
-        $this->creator = new TokenCreator(
+        $this->creator = new ConfigurationCreator(
             $this->clientInstantiator->reveal(),
             array(
                 'base_uri' => 'http://foo.com',
@@ -107,9 +107,9 @@ EOT;
         );
     }
 
-    public function testTokenCreationFailBecauseOfClientException()
+    public function testConfigurationCreationFailBecauseOfClientException()
     {
-        $this->setExpectedException('LaFourchette\AdobeCampaignClientBundle\Exception\TokenCreationException');
+        $this->setExpectedException('LaFourchette\AdobeCampaignClientBundle\Exception\ConfigurationCreationException');
 
         $client = $this
             ->getMockBuilder('\SoapClient')
@@ -131,9 +131,9 @@ EOT;
         $this->creator->create();
     }
 
-    public function testTokenCreationFailBecauseOfResponseEmpty()
+    public function testConfigurationCreationFailBecauseOfResponseEmpty()
     {
-        $this->setExpectedException('LaFourchette\AdobeCampaignClientBundle\Exception\TokenCreationException');
+        $this->setExpectedException('LaFourchette\AdobeCampaignClientBundle\Exception\ConfigurationCreationException');
 
         $client = $this
             ->getMockBuilder('\SoapClient')
@@ -156,7 +156,7 @@ EOT;
     }
 
 
-    public function testTokenCreation()
+    public function testConfigurationCreation()
     {
         $client = $this
             ->getMockBuilder('\SoapClient')
@@ -175,11 +175,11 @@ EOT;
             ->method('__doRequest')
             ->will($this->returnValue($this->payload));
 
-        $token = $this->creator->create();
+        $configuration = $this->creator->create();
 
-        $this->assertSame('http://foo.com', $token->getBaseUri());
-        $this->assertSame('securityToken', $token->getSecurity());
-        $this->assertSame('sessionToken', $token->getSession());
+        $this->assertSame('http://foo.com', $configuration->getBaseUri());
+        $this->assertSame('securityToken', $configuration->getSecurity());
+        $this->assertSame('sessionToken', $configuration->getSession());
     }
 
 

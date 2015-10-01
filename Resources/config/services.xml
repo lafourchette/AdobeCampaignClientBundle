@@ -7,17 +7,17 @@
     <services>
         <service id="la_fourchette_adobe_client.instantiator.client" class="LaFourchette\AdobeCampaignClientBundle\Client\ClientInstantiator"/>
 
-        <service id="la_fourchette_adobe_client.creator.token" class="LaFourchette\AdobeCampaignClientBundle\Client\TokenCreator">
+        <service id="la_fourchette_adobe_client.creator.configuration" class="LaFourchette\AdobeCampaignClientBundle\Client\ConfigurationCreator">
             <argument type="service" id="la_fourchette_adobe_client.instantiator.client"/>
             <argument>%adobe_campaign_client.configuration%</argument>
         </service>
 
-        <service id="la_fourchette_adobe_client.provider.token" class="LaFourchette\AdobeCampaignClientBundle\Client\TokenProvider">
-            <argument type="service" id="la_fourchette_adobe_client.creator.token"/>
+        <service id="la_fourchette_adobe_client.provider.configuration" class="LaFourchette\AdobeCampaignClientBundle\Client\ConfigurationProvider">
+            <argument type="service" id="la_fourchette_adobe_client.creator.configuration"/>
         </service>
 
         <service id="la_fourchette_adobe_client.creator.client" class="LaFourchette\AdobeCampaignClientBundle\Client\ClientCreator">
-            <argument type="service" id="la_fourchette_adobe_client.provider.token"/>
+            <argument type="service" id="la_fourchette_adobe_client.provider.configuration"/>
             <argument type="service" id="la_fourchette_adobe_client.instantiator.client"/>
         </service>
     </services>

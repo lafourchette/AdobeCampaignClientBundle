@@ -2,13 +2,13 @@
 
 namespace LaFourchette\AdobeCampaignClientBundle\Client;
 
-use LaFourchette\AdobeCampaignClientBundle\Exception\TokenCreationException;
+use LaFourchette\AdobeCampaignClientBundle\Exception\ConfigurationCreationException;
 use LaFourchette\AdobeCampaignClientBundle\Util\AdobeCampaignXmlLoader;
 
 /**
- * Create a Adobe Token object with security informations
+ * Create a Adobe Configuration object with security informations
  */
-class TokenCreator
+class ConfigurationCreator
 {
     const SOAP_MESSAGE_PAYLOAD = <<<EOT
 <x:Envelope xmlns:x="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:xtk:session">
@@ -45,9 +45,9 @@ EOT;
     }
 
     /**
-     * Create a Token object
+     * Create a Configuration object
      *
-     * @return Token
+     * @return Configuration
      */
     public function create()
     {
@@ -65,11 +65,11 @@ EOT;
                 1
             );
         } catch(\Exception $e) {
-            throw new TokenCreationException($e->getMessage(), $e->getCode(), $e);
+            throw new ConfigurationCreationException($e->getMessage(), $e->getCode(), $e);
         }
 
         if (null === $response) {
-            throw new TokenCreationException('Empty response received');
+            throw new ConfigurationCreationException('Empty response received');
         }
 
         $xmlResponse = AdobeCampaignXmlLoader::loadXml($response);
@@ -80,11 +80,11 @@ EOT;
         $xmlSecurityToken = $xmlResponse->xpath('/Envelope/Body/LogonResponse/pstrSecurityToken');
         $security = array_pop($xmlSecurityToken)->__toString();
 
-        $token = new Token();
-        $token->setBaseUri($this->config['base_uri']);
-        $token->setSecurity($security);
-        $token->setSession($session);
+        $configuration = new Configuration();
+        $configuration->setBaseUri($this->config['base_uri']);
+        $configuration->setSecurity($security);
+        $configuration->setSession($session);
 
-        return $token;
+        return $configuration;
     }
 }

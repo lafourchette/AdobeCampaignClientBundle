@@ -4,7 +4,7 @@ namespace LaFourchette\AdobeCampaignClientBundle\Client;
 
 use BeSimple\SoapClient\SoapClient;
 use BeSimple\SoapClient\SoapRequest;
-use LaFourchette\AdobeCampaignClientBundle\Client\Token;
+use LaFourchette\AdobeCampaignClientBundle\Client\Configuration;
 use LaFourchette\AdobeCampaignClientBundle\Util\AdobeCampaignXmlLoader;
 
 class Client extends SoapClient
@@ -12,9 +12,9 @@ class Client extends SoapClient
     const SOAP_ROUTER_PATH = '/nl/jsp/soaprouter.jsp';
 
     /**
-     * @var Token
+     * @var Configuration
      */
-    private $token;
+    private $configuration;
 
     /**
      * @var array
@@ -27,21 +27,21 @@ class Client extends SoapClient
     private $schema;
 
     /**
-     * @return Token
+     * @return Configuration
      */
-    public function getToken()
+    public function getConfiguration()
     {
-        return $this->token;
+        return $this->configuration;
     }
 
     /**
-     * @param Token
+     * @param Configuration
      *
      * @return Client
      */
-    public function setToken(Token $token)
+    public function setConfiguration(Configuration $configuration)
     {
-        $this->token = $token;
+        $this->configuration = $configuration;
 
         return $this;
     }
@@ -95,7 +95,7 @@ class Client extends SoapClient
     {
         $response = $this->__doRequest(
             $envelope,
-            $this->getToken()->getBaseUri().Client::SOAP_ROUTER_PATH,
+            $this->getConfiguration()->getBaseUri().Client::SOAP_ROUTER_PATH,
             sprintf('%s#%s', $this->getSchema(), $action),
             1
         );
