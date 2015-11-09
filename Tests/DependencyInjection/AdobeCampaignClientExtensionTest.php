@@ -31,7 +31,7 @@ class AdobeCampaignClientExtensionTest extends AbstractExtensionTestCase
             )
         ));
 
-        $this->assertContainerBuilderHasService('la_fourchette_adobe_client.client.query_def');
-        $this->assertContainerBuilderHasService('la_fourchette_adobe_client.creator.client');
+        $this->assertContainerBuilderHasService('adobe_campaign_client.client.query_def');
+        $this->assertContainerBuilderHasService('adobe_campaign_client.creator.client');
     }
 }

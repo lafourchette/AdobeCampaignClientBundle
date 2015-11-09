@@ -42,9 +42,9 @@ class AdobeCampaignClientExtension extends Extension
         $definitionClient = new Definition('LaFourchette\AdobeCampaignClientBundle\Client\Client', array(
             $node['schema']
         ));
-        $definitionClient->setFactoryService('la_fourchette_adobe_client.creator.client');
+        $definitionClient->setFactoryService('adobe_campaign_client.creator.client');
         $definitionClient->setFactoryMethod('create');
 
-        $container->setDefinition('la_fourchette_adobe_client.client.' . $node['name'], $definitionClient);
+        $container->setDefinition('adobe_campaign_client.client.' . $node['name'], $definitionClient);
     }
 }
