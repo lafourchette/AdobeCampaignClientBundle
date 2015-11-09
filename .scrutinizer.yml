@@ -12,3 +12,6 @@ tools:
     php_analyzer: true
 filter:
     excluded_paths: [Tests/*]
+checks:
+    php:
+        code_rating: true
