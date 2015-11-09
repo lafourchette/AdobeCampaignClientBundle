@@ -13,18 +13,18 @@
             "email": "olaurendeau@lafourchette.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-0": { "LaFourchette\\AdobeCampaignClientBundle": "" }
     },
     "target-dir": "LaFourchette/AdobeCampaignClientBundle",
     "require": {
-        "symfony/config": "*",
-        "symfony/dependency-injection": "*",
+        "symfony/config": "~2.1",
+        "symfony/dependency-injection": "~2.1",
         "besimple/soap": "^0.2.6"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.5.*",
+        "phpunit/phpunit": "~4.8",
         "matthiasnoback/symfony-dependency-injection-test": "0.*"
     },
     "config": {
