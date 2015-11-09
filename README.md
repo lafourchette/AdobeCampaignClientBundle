@@ -98,7 +98,8 @@ EOT;
             ));
         }
 
-        return $campaignList;```
+        return $campaignList;
+```
 
 ## License
 
