@@ -95,7 +95,7 @@ class Client extends SoapClient
     {
         $response = $this->__doRequest(
             $envelope,
-            $this->getConfiguration()->getBaseUri().Client::SOAP_ROUTER_PATH,
+            $this->getConfiguration()->getBaseUri().self::SOAP_ROUTER_PATH,
             sprintf('%s#%s', $this->getSchema(), $action),
             1
         );
