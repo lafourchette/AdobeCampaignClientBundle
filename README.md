@@ -78,27 +78,27 @@ $envelope = <<<EOT
 </x:Envelope>
 EOT;
 
-        // Execute SOAP request
-        $xmlResponse = $this->client->doCustomSoapRequest(
-            sprintf($envelope, $this->client->getConfiguration()->getSession(), $idCustomer),
-            'ExecuteQuery'
-        );
+// Execute SOAP request
+$xmlResponse = $client->doCustomSoapRequest(
+    sprintf($envelope, $client->getConfiguration()->getSession(), $idCustomer),
+    'ExecuteQuery'
+);
 
-        // Parse results
-        $campaignList = array();
-        foreach ($xmlResponse->xpath('/Envelope/Body/ExecuteQueryResponse/pdomOutput/broadLogRcp-collection/broadLogRcp') as $broadLogRcp) {
+// Parse results
+$campaignList = array();
+foreach ($xmlResponse->xpath('/Envelope/Body/ExecuteQueryResponse/pdomOutput/broadLogRcp-collection/broadLogRcp') as $broadLogRcp) {
 
-            $delivery = $broadLogRcp->xpath('delivery');
-            $delivery = current($delivery);
+    $delivery = $broadLogRcp->xpath('delivery');
+    $delivery = current($delivery);
 
-            $campaignList[] = $this->hydrateCampaign(array(
-                'id' => $broadLogRcp['id'],
-                'label' => (string) $delivery['label']
-                )
-            ));
-        }
+    $campaignList[] = array(
+        'id' => (int) $broadLogRcp['id'],
+        'label' => (string) $delivery['label']
+        )
+    );
+}
 
-        return $campaignList;
+return $campaignList;
 ```
 
 ## License
