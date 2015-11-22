@@ -1,0 +1,325 @@
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:xtk:queryDef" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:xtk:queryDef">
+<types>
+<s:schema elementFormDefault="qualified" targetNamespace="urn:xtk:queryDef">
+<s:complexType name="Element">
+<s:sequence>
+<s:any processContents="lax"/>
+</s:sequence>
+</s:complexType>
+<s:element name="SelectAll">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="sessiontoken" type="s:string"/>
+<s:element maxOccurs="1" minOccurs="1" name="entity" type="tns:Element"/>
+<s:element maxOccurs="1" minOccurs="1" name="bDuplicate" type="s:boolean"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="SelectAllResponse" type="tns:Element"/>
+<s:element name="ExecuteQuery">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="sessiontoken" type="s:string"/>
+<s:element maxOccurs="1" minOccurs="1" name="entity" type="tns:Element"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="ExecuteQueryResponse">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="pdomOutput" type="tns:Element"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="GetInstanceFromModel">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="sessiontoken" type="s:string"/>
+<s:element maxOccurs="1" minOccurs="1" name="entity" type="tns:Element"/>
+<s:element maxOccurs="1" minOccurs="1" name="strSchema" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="GetInstanceFromModelResponse">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="pdomOutput" type="tns:Element"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="CreateInstanceFromModel">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="sessiontoken" type="s:string"/>
+<s:element maxOccurs="1" minOccurs="1" name="strSchema" type="s:string"/>
+<s:element maxOccurs="1" minOccurs="1" name="lModelId" type="s:int"/>
+<s:element maxOccurs="1" minOccurs="1" name="elemDiff" type="tns:Element"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="CreateInstanceFromModelResponse">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="plOutput" type="s:int"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="BuildQuery">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="sessiontoken" type="s:string"/>
+<s:element maxOccurs="1" minOccurs="1" name="entity" type="tns:Element"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="BuildQueryResponse">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="pstrSql" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="BuildQueryEx">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="sessiontoken" type="s:string"/>
+<s:element maxOccurs="1" minOccurs="1" name="entity" type="tns:Element"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="BuildQueryExResponse">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="pstrSql" type="s:string"/>
+<s:element maxOccurs="1" minOccurs="1" name="pstrFormat" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="Update">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="sessiontoken" type="s:string"/>
+<s:element maxOccurs="1" minOccurs="1" name="elemContext" type="tns:Element"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="UpdateResponse">
+<s:complexType>
+<s:sequence/>
+</s:complexType>
+</s:element>
+<s:element name="EvaluateExpr">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="sessiontoken" type="s:string"/>
+<s:element maxOccurs="1" minOccurs="1" name="strExpr" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="EvaluateExprResponse">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="pstrResult" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="DisplayCondition">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="sessiontoken" type="s:string"/>
+<s:element maxOccurs="1" minOccurs="1" name="strSchema" type="s:string"/>
+<s:element maxOccurs="1" minOccurs="1" name="elemWhere" type="tns:Element"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="DisplayConditionResponse">
+<s:complexType>
+<s:sequence>
+<s:element maxOccurs="1" minOccurs="1" name="pstrResult" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+</s:schema>
+</types>
+<message name="SelectAllIn">
+<part element="tns:SelectAll" name="parameters"/>
+</message>
+<message name="SelectAllOut">
+<part element="tns:SelectAllResponse" name="parameters"/>
+</message>
+<message name="ExecuteQueryIn">
+<part element="tns:ExecuteQuery" name="parameters"/>
+</message>
+<message name="ExecuteQueryOut">
+<part element="tns:ExecuteQueryResponse" name="parameters"/>
+</message>
+<message name="GetInstanceFromModelIn">
+<part element="tns:GetInstanceFromModel" name="parameters"/>
+</message>
+<message name="GetInstanceFromModelOut">
+<part element="tns:GetInstanceFromModelResponse" name="parameters"/>
+</message>
+<message name="CreateInstanceFromModelIn">
+<part element="tns:CreateInstanceFromModel" name="parameters"/>
+</message>
+<message name="CreateInstanceFromModelOut">
+<part element="tns:CreateInstanceFromModelResponse" name="parameters"/>
+</message>
+<message name="BuildQueryIn">
+<part element="tns:BuildQuery" name="parameters"/>
+</message>
+<message name="BuildQueryOut">
+<part element="tns:BuildQueryResponse" name="parameters"/>
+</message>
+<message name="BuildQueryExIn">
+<part element="tns:BuildQueryEx" name="parameters"/>
+</message>
+<message name="BuildQueryExOut">
+<part element="tns:BuildQueryExResponse" name="parameters"/>
+</message>
+<message name="UpdateIn">
+<part element="tns:Update" name="parameters"/>
+</message>
+<message name="UpdateOut">
+<part element="tns:UpdateResponse" name="parameters"/>
+</message>
+<message name="EvaluateExprIn">
+<part element="tns:EvaluateExpr" name="parameters"/>
+</message>
+<message name="EvaluateExprOut">
+<part element="tns:EvaluateExprResponse" name="parameters"/>
+</message>
+<message name="DisplayConditionIn">
+<part element="tns:DisplayCondition" name="parameters"/>
+</message>
+<message name="DisplayConditionOut">
+<part element="tns:DisplayConditionResponse" name="parameters"/>
+</message>
+<portType name="queryDefMethodsSoap">
+<operation name="SelectAll">
+<input message="tns:SelectAllIn"/>
+<output message="tns:SelectAllOut"/>
+</operation>
+<operation name="ExecuteQuery">
+<input message="tns:ExecuteQueryIn"/>
+<output message="tns:ExecuteQueryOut"/>
+</operation>
+<operation name="GetInstanceFromModel">
+<input message="tns:GetInstanceFromModelIn"/>
+<output message="tns:GetInstanceFromModelOut"/>
+</operation>
+<operation name="CreateInstanceFromModel">
+<input message="tns:CreateInstanceFromModelIn"/>
+<output message="tns:CreateInstanceFromModelOut"/>
+</operation>
+<operation name="BuildQuery">
+<input message="tns:BuildQueryIn"/>
+<output message="tns:BuildQueryOut"/>
+</operation>
+<operation name="BuildQueryEx">
+<input message="tns:BuildQueryExIn"/>
+<output message="tns:BuildQueryExOut"/>
+</operation>
+<operation name="Update">
+<input message="tns:UpdateIn"/>
+<output message="tns:UpdateOut"/>
+</operation>
+<operation name="EvaluateExpr">
+<input message="tns:EvaluateExprIn"/>
+<output message="tns:EvaluateExprOut"/>
+</operation>
+<operation name="DisplayCondition">
+<input message="tns:DisplayConditionIn"/>
+<output message="tns:DisplayConditionOut"/>
+</operation>
+</portType>
+<binding name="queryDefMethodsSoap" type="tns:queryDefMethodsSoap">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="SelectAll">
+<soap:operation soapAction="xtk:queryDef#SelectAll" style="document"/>
+<input>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</input>
+<output>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</output>
+</operation>
+<operation name="ExecuteQuery">
+<soap:operation soapAction="xtk:queryDef#ExecuteQuery" style="document"/>
+<input>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</input>
+<output>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</output>
+</operation>
+<operation name="GetInstanceFromModel">
+<soap:operation soapAction="xtk:queryDef#GetInstanceFromModel" style="document"/>
+<input>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</input>
+<output>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</output>
+</operation>
+<operation name="CreateInstanceFromModel">
+<soap:operation soapAction="xtk:queryDef#CreateInstanceFromModel" style="document"/>
+<input>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</input>
+<output>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</output>
+</operation>
+<operation name="BuildQuery">
+<soap:operation soapAction="xtk:queryDef#BuildQuery" style="document"/>
+<input>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</input>
+<output>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</output>
+</operation>
+<operation name="BuildQueryEx">
+<soap:operation soapAction="xtk:queryDef#BuildQueryEx" style="document"/>
+<input>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</input>
+<output>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</output>
+</operation>
+<operation name="Update">
+<soap:operation soapAction="xtk:queryDef#Update" style="document"/>
+<input>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</input>
+<output>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</output>
+</operation>
+<operation name="EvaluateExpr">
+<soap:operation soapAction="xtk:queryDef#EvaluateExpr" style="document"/>
+<input>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</input>
+<output>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</output>
+</operation>
+<operation name="DisplayCondition">
+<soap:operation soapAction="xtk:queryDef#DisplayCondition" style="document"/>
+<input>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</input>
+<output>
+<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" use="literal"/>
+</output>
+</operation>
+</binding>
+<service name="XtkQueryDef">
+<port binding="tns:queryDefMethodsSoap" name="queryDefMethodsSoap">
+<soap:address location="https://ac.lafourchette.com/nl/jsp/soaprouter.jsp"/>
+</port>
+</service>
+</definitions>

@@ -31,5 +31,4 @@ class ClientInstantiator
     {
         return new \SoapClient($wsdl, $options);
     }
-
 }
