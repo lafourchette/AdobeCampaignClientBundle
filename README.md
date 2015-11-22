@@ -3,7 +3,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/lafourchette/AdobeCampaignClientBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/lafourchette/AdobeCampaignClientBundle/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/lafourchette/AdobeCampaignClientBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/lafourchette/AdobeCampaignClientBundle/?branch=master)
 
-Provide access to adobe campaign API
+Provide access to adobe campaign SOAP API
 
 ## Installation
 Add AdobeCampaignClientBundle to your composer.json, then update
@@ -25,7 +25,7 @@ Add AdobeCampaignClientBundle to your application kernel
     {
         return array(
             // ...
-            new AdobeCampaignClientBundle(),
+            new LaFourchette\AdobeCampaignBundle\LaFourchetteAdobeCampaignBundle(),
             // ...
         );
     }
